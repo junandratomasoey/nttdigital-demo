@@ -120,7 +120,28 @@ sudo nginx -t && sudo systemctl reload nginx
 sudo a2ensite nttdigital-demo && sudo a2enmod rewrite && sudo systemctl reload apache2
 ```
 
-### 4. HTTPS (Let's Encrypt)
+### Server dengan Cloudflare Tunnel (cara yang dipakai server-junandra)
+
+Tidak perlu record A, port forwarding, maupun certbot — HTTPS ditangani Cloudflare.
+
+1. Tambahkan hostname demo ke `ingress` di `/etc/cloudflared/config.yml`, **di atas** baris `- service: http_status:404`:
+
+```yaml
+  - hostname: demo-desa.nttdigital.site
+    service: http://localhost:80
+  - hostname: demo-sekolah.nttdigital.site
+    service: http://localhost:80
+  # ... dst untuk umkm, gereja, hotel, undangan
+```
+
+2. Buat DNS CNAME otomatis: `cloudflared tunnel route dns <NAMA-TUNNEL> demo-desa.nttdigital.site` (ulangi per subdomain).
+3. `sudo systemctl restart cloudflared`
+4. Vhost nginx tetap `listen 80` dengan `server_name` keenam subdomain (lihat 3a), tanpa certbot.
+
+Aplikasi sudah memanggil `trustProxies('*')` dan `URL::forceScheme('https')` saat `APP_ENV=production`,
+sehingga semua link aset memakai https.
+
+### 4. HTTPS (Let's Encrypt) — hanya jika TIDAK memakai Cloudflare Tunnel
 
 ```bash
 sudo certbot --nginx   -d demo-desa.nttdigital.site -d demo-sekolah.nttdigital.site -d demo-umkm.nttdigital.site \
