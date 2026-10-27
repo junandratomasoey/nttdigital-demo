@@ -28,7 +28,7 @@
             </a>
             @endforeach
         </div>
-        <p class="mt-10 text-sm text-stone-500"><a href="{{ config('demo.situs_utama') }}" class="font-semibold underline">Kembali ke nttdigital.com</a></p>
+        <p class="mt-10 text-sm text-stone-500"><a href="{{ config('demo.situs_utama') }}" class="font-semibold underline">Kembali ke nttdigital.site</a></p>
     </main>
 </body>
 </html>

@@ -5,17 +5,17 @@
 | Konfigurasi website demo NTT Digital
 |--------------------------------------------------------------------------
 | Setiap demo dilayani dari subdomain:  demo-{jenis}.{domain}
-| Contoh: demo-desa.nttdigital.com
+| Contoh: demo-desa.nttdigital.site
 |
 | Untuk uji lokal tanpa subdomain, buka ?demo=desa (tersimpan di session).
 */
 
 return [
 
-    'domain' => env('DEMO_DOMAIN', 'nttdigital.com'),
+    'domain' => env('DEMO_DOMAIN', 'nttdigital.site'),
 
     // Situs utama untuk tombol "Pesan website seperti ini"
-    'situs_utama' => env('DEMO_SITUS_UTAMA', 'https://nttdigital.com'),
+    'situs_utama' => env('DEMO_SITUS_UTAMA', 'https://nttdigital.site'),
     'whatsapp'    => env('DEMO_WHATSAPP', '6282247290150'),
 
     // Akun admin yang ditampilkan ke pengunjung (password sama untuk semua demo)

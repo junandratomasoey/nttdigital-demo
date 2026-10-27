@@ -4,17 +4,17 @@ Satu aplikasi Laravel 11 + Filament yang melayani 6 website demo lewat subdomain
 
 | Subdomain | Demo | Halaman |
 |---|---|---|
-| `demo-desa.nttdigital.com` | Desa Lontar Asri | beranda, profil, berita, APBDes, layanan surat online, produk desa, kontak |
-| `demo-sekolah.nttdigital.com` | SMA Cahaya Flobamora | beranda, profil, berita, guru, galeri, PPDB online, kontak |
-| `demo-umkm.nttdigital.com` | Tenun Mama Lena | beranda, katalog + filter, detail produk + pesan WA, cerita, kontak |
-| `demo-gereja.nttdigital.com` | Jemaat Bukit Kasih | beranda, jadwal ibadah, warta, pelayanan, persembahan & doa |
-| `demo-hotel.nttdigital.com` | Lontar Bay Resort | beranda + cari kamar, kamar, detail kamar, fasilitas, wisata, reservasi |
-| `demo-undangan.nttdigital.com` | Yohanes & Maria | undangan satu halaman: sampul, countdown, acara, RSVP, buku ucapan |
+| `demo-desa.nttdigital.site` | Desa Lontar Asri | beranda, profil, berita, APBDes, layanan surat online, produk desa, kontak |
+| `demo-sekolah.nttdigital.site` | SMA Cahaya Flobamora | beranda, profil, berita, guru, galeri, PPDB online, kontak |
+| `demo-umkm.nttdigital.site` | Tenun Mama Lena | beranda, katalog + filter, detail produk + pesan WA, cerita, kontak |
+| `demo-gereja.nttdigital.site` | Jemaat Bukit Kasih | beranda, jadwal ibadah, warta, pelayanan, persembahan & doa |
+| `demo-hotel.nttdigital.site` | Lontar Bay Resort | beranda + cari kamar, kamar, detail kamar, fasilitas, wisata, reservasi |
+| `demo-undangan.nttdigital.site` | Yohanes & Maria | undangan satu halaman: sampul, countdown, acara, RSVP, buku ucapan |
 
 Semua nama, orang, nomor rekening, dan angka **fiktif**. Setiap halaman punya pita "DEMO" dan
-`noindex` agar tidak dikira situs resmi dan tidak bersaing di Google dengan nttdigital.com.
+`noindex` agar tidak dikira situs resmi dan tidak bersaing di Google dengan nttdigital.site.
 
-**Panel admin** tiap demo: `https://demo-{jenis}.nttdigital.com/admin`
+**Panel admin** tiap demo: `https://demo-{jenis}.nttdigital.site/admin`
 Email `admin@{jenis}.demo`, kata sandi `demo1234` (lihat `DEMO_ADMIN_PASSWORD`).
 Admin hanya bisa masuk ke demo miliknya. Semua data di-reset setiap pukul 02.00 WITA.
 
@@ -47,7 +47,7 @@ npm run build      # atau: npm run watch
 ## Deploy ke server Ubuntu
 
 ### 1. DNS
-Di pengelola domain nttdigital.com, tambahkan record **A** yang mengarah ke IP publik server:
+Di pengelola domain nttdigital.site, tambahkan record **A** yang mengarah ke IP publik server:
 
 ```
 demo-desa      A   <IP-SERVER>
@@ -82,8 +82,8 @@ Butuh ekstensi PHP `pdo_sqlite` (`sudo apt install php8.4-sqlite3`, sesuaikan ve
 ```nginx
 server {
     listen 80;
-    server_name demo-desa.nttdigital.com demo-sekolah.nttdigital.com demo-umkm.nttdigital.com
-                demo-gereja.nttdigital.com demo-hotel.nttdigital.com demo-undangan.nttdigital.com;
+    server_name demo-desa.nttdigital.site demo-sekolah.nttdigital.site demo-umkm.nttdigital.site
+                demo-gereja.nttdigital.site demo-hotel.nttdigital.site demo-undangan.nttdigital.site;
     root /var/www/nttdigital-demo/public;
     index index.php;
     client_max_body_size 8M;
@@ -106,8 +106,8 @@ sudo nginx -t && sudo systemctl reload nginx
 
 ```apache
 <VirtualHost *:80>
-    ServerName demo-desa.nttdigital.com
-    ServerAlias demo-sekolah.nttdigital.com demo-umkm.nttdigital.com demo-gereja.nttdigital.com demo-hotel.nttdigital.com demo-undangan.nttdigital.com
+    ServerName demo-desa.nttdigital.site
+    ServerAlias demo-sekolah.nttdigital.site demo-umkm.nttdigital.site demo-gereja.nttdigital.site demo-hotel.nttdigital.site demo-undangan.nttdigital.site
     DocumentRoot /var/www/nttdigital-demo/public
     <Directory /var/www/nttdigital-demo/public>
         AllowOverride All
@@ -123,8 +123,8 @@ sudo a2ensite nttdigital-demo && sudo a2enmod rewrite && sudo systemctl reload a
 ### 4. HTTPS (Let's Encrypt)
 
 ```bash
-sudo certbot --nginx   -d demo-desa.nttdigital.com -d demo-sekolah.nttdigital.com -d demo-umkm.nttdigital.com \
-                       -d demo-gereja.nttdigital.com -d demo-hotel.nttdigital.com -d demo-undangan.nttdigital.com
+sudo certbot --nginx   -d demo-desa.nttdigital.site -d demo-sekolah.nttdigital.site -d demo-umkm.nttdigital.site \
+                       -d demo-gereja.nttdigital.site -d demo-hotel.nttdigital.site -d demo-undangan.nttdigital.site
 # Apache: ganti --nginx dengan --apache
 ```
 

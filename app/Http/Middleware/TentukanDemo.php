@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Menentukan demo yang sedang dibuka dari subdomain:
- *   demo-desa.nttdigital.com  -> jenis "desa"
+ *   demo-desa.nttdigital.site  -> jenis "desa"
  * Untuk uji lokal: ?demo=desa (disimpan di session), ?demo=0 untuk keluar.
  * Hasilnya dipasang di container sebagai app('demo') dan dibagikan ke view sebagai $demo.
  */
